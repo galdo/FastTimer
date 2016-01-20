@@ -1,0 +1,53 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "CocoaTime",
+    "longName": "Fast Timer",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "characterRegex": "[0-9:.]",
+                "file": "fonts/LECO_2014-Regular.ttf",
+                "name": "LECO_NUMBERS_18",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "font"
+            },
+            {
+                "file": "images/Shopping-alarm-clock-icon-app.png",
+                "menuIcon": true,
+                "name": "APP_ICON",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/Shopping-alarm-clock-icon-small.png",
+                "name": "ALARM_CLOCK",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "Fast Timer",
+    "targetPlatforms": [
+        "basalt",
+        "chalk"
+    ],
+    "uuid": "8f857b45-aa58-4225-ba7a-3b54f0052a7f",
+    "versionLabel": "1.6",
+    "watchapp": {
+        "watchface": false
+    }
+}
