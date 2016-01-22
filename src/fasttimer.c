@@ -81,39 +81,45 @@ void second_timer_callback(void *data) {
 	if (s_current_timer.state == 1) {
 		
 		// set help text
-		text_layer_set_text(s_help_layer, "running...");
+		text_layer_set_text(s_help_layer, "running");
 		
 		// reduce timer by one second
 		s_current_timer.seconds--;
 		snprintf(s_time_buffer_sec, sizeof(s_time_buffer_sec), "%02d", (int)(s_current_timer.seconds % 60));
 		text_layer_set_text(s_output_layer_sec, s_time_buffer_sec);
 		
+		// blink delimeter
+		if (s_time_buffer[2] == ':') {
+			snprintf(s_time_buffer, sizeof(s_time_buffer), "%02d.%02d", (int)(s_current_timer.seconds / 3600), (int)(s_current_timer.seconds / 60 % 60));
+			text_layer_set_text(s_output_layer, s_time_buffer);
+		} else {
+			snprintf(s_time_buffer, sizeof(s_time_buffer), "%02d:%02d", (int)(s_current_timer.seconds / 3600), (int)(s_current_timer.seconds / 60 % 60));
+			text_layer_set_text(s_output_layer, s_time_buffer);
+		}
+
+
+		
 		// register next execution	-> return each minute
 		if (s_current_timer.seconds == 0) {
 			// end of timer reached
 			s_current_timer.state = 2;
-			text_layer_set_text(s_help_layer, "finished");
 		} else {
 			// refresh if not finished
 			s_current_timer.state = 1;
+		
+			// refresh call
 			s_blink_timer = app_timer_register(1000, (AppTimerCallback) second_timer_callback, NULL);
 		}
 	} else if (s_current_timer.state == 2) {
 		// vibe as long as no button is pressed
+		text_layer_set_text(s_help_layer, "finished");
 		vibes_double_pulse();
+		
+		// refresh call
 		s_blink_timer = app_timer_register(1000, (AppTimerCallback) second_timer_callback, NULL);
-	}
+}
 	
-	// blink delimeter
-	if ((s_time_buffer[2] == ':') && (s_current_timer.seconds > 0)) {
-		snprintf(s_time_buffer, sizeof(s_time_buffer), "%02d.%02d", (int)(s_current_timer.seconds / 3600), (int)(s_current_timer.seconds / 60 % 60));
-		text_layer_set_text(s_output_layer, s_time_buffer);
-	} else {
-		snprintf(s_time_buffer, sizeof(s_time_buffer), "%02d:%02d", (int)(s_current_timer.seconds / 3600), (int)(s_current_timer.seconds / 60 % 60));
-		text_layer_set_text(s_output_layer, s_time_buffer);
-	}
-
-	APP_LOG(APP_LOG_LEVEL_DEBUG, "%d sec: %02d:%02d:%02d", s_current_timer.seconds, (int)(s_current_timer.seconds / 3600), (int)(s_current_timer.seconds / 60 % 60), (int)(s_current_timer.seconds % 60));
+	//APP_LOG(APP_LOG_LEVEL_DEBUG, "%d sec: %02d:%02d:%02d", s_current_timer.seconds, (int)(s_current_timer.seconds / 3600), (int)(s_current_timer.seconds / 60 % 60), (int)(s_current_timer.seconds % 60));
 }
 /* TIMER HANDLERS */
 
@@ -134,8 +140,6 @@ static void wakeup_handler(WakeupId id, int32_t reason) {
 	
 	// app woken app by timing event
 	s_current_timer.state = 2;
-	text_layer_set_text(s_help_layer, "finished");
-	vibes_double_pulse();
 	
 	// activate blink timer for start finishing procedure
 	s_blink_timer = app_timer_register(1, (AppTimerCallback) second_timer_callback, NULL);

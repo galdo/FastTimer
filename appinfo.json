@@ -9,6 +9,15 @@
     "resources": {
         "media": [
             {
+                "file": "images/Shopping-alarm-clock-icon-small.png",
+                "name": "ALARM_CLOCK",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
                 "file": "images/Shopping-alarm-clock-icon-app.png",
                 "menuIcon": true,
                 "name": "APP_ICON",
@@ -27,15 +36,6 @@
                     "chalk"
                 ],
                 "type": "font"
-            },
-            {
-                "file": "images/Shopping-alarm-clock-icon-small.png",
-                "name": "ALARM_CLOCK",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "bitmap"
             }
         ]
     },
@@ -46,7 +46,7 @@
         "chalk"
     ],
     "uuid": "8f857b45-aa58-4225-ba7a-3b54f0052a7f",
-    "versionLabel": "1.6",
+    "versionLabel": "1.7",
     "watchapp": {
         "watchface": false
     }
