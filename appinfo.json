@@ -9,16 +9,6 @@
     "resources": {
         "media": [
             {
-                "characterRegex": "[0-9:.]",
-                "file": "fonts/LECO_2014-Regular.ttf",
-                "name": "LECO_NUMBERS_18",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "font"
-            },
-            {
                 "file": "images/Shopping-alarm-clock-icon-app.png",
                 "menuIcon": true,
                 "name": "APP_ICON",
@@ -27,6 +17,16 @@
                     "chalk"
                 ],
                 "type": "bitmap"
+            },
+            {
+                "characterRegex": "[0-9:.]",
+                "file": "fonts/LECO_2014-Regular.ttf",
+                "name": "LECO_NUMBERS_18",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "font"
             },
             {
                 "file": "images/Shopping-alarm-clock-icon-small.png",
